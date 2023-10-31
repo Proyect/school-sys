@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get("school",[SchoolController::class])->name("school.index");
+Route::post("school/edit",[SchoolController::class,"edit"])->name("school.edit");
+Route::delete("school/delete",[SchoolController::class,"delete"])->name("school.delete");
+
+Route::get("student",[StudentController::class])->name("student.index");
+Route::post("student/edit",[SchoolController::class,"edit"])->name("student.edit");
+Route::delete("student/delete",[SchoolController::class,"delete"])->name("student.delete");
+
 
 require __DIR__.'/auth.php';
