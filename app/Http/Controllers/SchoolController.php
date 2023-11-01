@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\School;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
+
 class SchoolController extends Controller
 {
     /**
@@ -12,10 +18,10 @@ class SchoolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //private $school = School::all();
     public function index()
-    {
-        $chools = School::all();
-        return wiew("school.index", compact("school"))
+    {        
+        return view("School",compact('schools'));
     }
 
     /**
@@ -23,9 +29,9 @@ class SchoolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view("School",compact('schools'));
     }
 
     /**
@@ -58,7 +64,7 @@ class SchoolController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $this->school->save();
     }
 
     /**
@@ -70,7 +76,7 @@ class SchoolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->school->save();
     }
 
     /**
@@ -81,6 +87,6 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->school->delete($id);
     }
 }

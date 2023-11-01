@@ -28,15 +28,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get("/school",[SchoolController::class,'index'])->name("school.index");
+    Route::post("/school",[SchoolController::class,"edit"])->name("school.edit");
+    Route::delete("/school",[SchoolController::class,"delete"])->name("school.delete");
+
+    Route::get("/student",[StudentController::class,"index"])->name("student.index");
+    Route::post("/student/edit",[SchoolController::class,"edit"])->name("student.edit");
+    Route::delete("/student/delete",[SchoolController::class,"delete"])->name("student.delete");
+
 });
 
-Route::get("school",[SchoolController::class])->name("school.index");
-Route::post("school/edit",[SchoolController::class,"edit"])->name("school.edit");
-Route::delete("school/delete",[SchoolController::class,"delete"])->name("school.delete");
-
-Route::get("student",[StudentController::class])->name("student.index");
-Route::post("student/edit",[SchoolController::class,"edit"])->name("student.edit");
-Route::delete("student/delete",[SchoolController::class,"delete"])->name("student.delete");
 
 
 require __DIR__.'/auth.php';
