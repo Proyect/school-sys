@@ -15,6 +15,6 @@ class Student extends Model
 
     public function school()
     {
-        return $this->HasMany("App/Model/School");
+        return $this->belongsTo("App/Model/School","school_id");
     }
 }

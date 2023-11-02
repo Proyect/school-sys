@@ -20,7 +20,8 @@ class SchoolController extends Controller
      */
     //private $school = School::all();
     public function index()
-    {        
+    { 
+        $schools = School::all();       
         return view("School",compact('schools'));
     }
 

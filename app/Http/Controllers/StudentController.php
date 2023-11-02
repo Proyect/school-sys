@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -13,7 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+        return view("Student", compact("students"));
     }
 
     /**
@@ -56,7 +58,7 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -68,7 +70,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $students = Student::find($id);
     }
 
     /**
@@ -79,6 +81,7 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $students = Student::del($id);
+        return $students;
     }
 }
