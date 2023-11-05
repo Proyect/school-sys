@@ -19,7 +19,8 @@ class School extends Model
         "phone2",
         "city",
         "country",
-        "website"
+        "website",
+        "logo"
     ];
 
     protected $cast = ["logo"=>"image"];
