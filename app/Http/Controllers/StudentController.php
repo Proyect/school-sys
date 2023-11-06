@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = Student::all();// dd($students);
         return view("Student", compact("students"));
     }
 
@@ -23,9 +23,10 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $student = Student::new($request);
+        return $student;
     }
 
     /**
@@ -71,6 +72,8 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $students = Student::find($id);
+        $students->update(request()->all());
+        return $students;        
     }
 
     /**

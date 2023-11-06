@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use function Pest\Laravel\json;
+
 class SchoolController extends Controller
 {
     /**
@@ -32,6 +34,7 @@ class SchoolController extends Controller
      */
     public function create(Request $request)
     {
+        $school = School::new($request);
         return view("School",compact('schools'));
     }
 
@@ -63,9 +66,11 @@ class SchoolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        return $this->school->save();
+        $school = School::get($id);
+        $school->where($id)->update($request);    
+        return $school;
     }
 
     /**
@@ -77,7 +82,9 @@ class SchoolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->school->save();
+        $school = School::get($id);
+        $school->where($id)->update($request);
+        return response()->json($school);
     }
 
     /**
@@ -88,6 +95,7 @@ class SchoolController extends Controller
      */
     public function destroy($id)
     {
-        return $this->school->delete($id);
+        $school = School::where($id)->delete(); 
+        return response()->json($school);
     }
 }
